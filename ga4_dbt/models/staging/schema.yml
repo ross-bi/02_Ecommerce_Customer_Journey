@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: stg_ga4_events
+    description: "清理與標準化後的 GA4 原始事件資料（處理 null 值與型別轉換）"
+    columns:
+      - name: session_id
+        description: "GA4 工作階段的唯一識別碼"
+        tests:
+          - not_null:
+             arguments:
+              severity: warn  # 如果有 null，只會跳警告而不會中斷執行
+
+      - name: user_pseudo_id
+        description: "使用者匿名 ID (user_pseudo_id)"
+        tests:
+          - not_null
+
+      - name: event_name
+        description: "漏斗事件名稱"
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['session_start', 'view_item', 'add_to_cart', 'begin_checkout', 'purchase']
+
+      - name: device_category
+        description: "裝置類型"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['mobile', 'desktop', 'tablet']
+                # 如果出現 (not set) 等於我們前面的 SQL 沒寫好，這裡就會報錯抓出 Bug
