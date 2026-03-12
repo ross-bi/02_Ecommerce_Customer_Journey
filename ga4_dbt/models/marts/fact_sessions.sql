@@ -22,9 +22,11 @@ SELECT
     SUM(purchase_revenue) AS session_revenue
 
 FROM {{ ref('stg_ga4_events') }}
-GROUP BY 1, 2, 3
+
 
 {% if is_incremental() %}
   -- 只有當這是後續更新時，才只抓取比現有資料庫中最新的日期還要新的資料
   WHERE event_time > (SELECT max(event_time) FROM {{ this }})
 {% endif %}
+
+GROUP BY 1, 2, 3
