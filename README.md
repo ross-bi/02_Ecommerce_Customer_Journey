@@ -1,4 +1,6 @@
 [![繁體中文](https://img.shields.io/badge/繁體中文-點擊查看-blue?style=for-the-badge)](README.zh-TW.md)
+&nbsp;&nbsp;
+[![简体中文](https://img.shields.io/badge/简体中文-点击查看-blue?style=for-the-badge)](README.zh-CN.md)
 
 # E-Commerce Customer Journey Analytics
 
@@ -245,4 +247,4 @@ ORDER BY cvr DESC;
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT LICENSE](./LICENSE).
