@@ -1,0 +1,1 @@
+Windows 繁體中文系統的經典坑。cp950（Big5 編碼）無法解讀 UTF-8 的中文字元，而 dbt 在解析 dbt_project.yml 時用了系統預設編碼。

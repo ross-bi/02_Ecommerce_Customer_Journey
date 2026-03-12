@@ -1,0 +1,137 @@
+version: 2
+
+models:
+  # ============================================================
+  # fact_sessions — 漏斗分析的核心事實表
+  # ============================================================
+  - name: fact_sessions
+    description: >
+      以 session 為粒度的漏斗事實表。
+      每一列代表一次使用者的瀏覽工作階段，
+      記錄該工作階段是否經歷了各漏斗階段
+      (session_start → view_item → add_to_cart → begin_checkout → purchase)
+      以及該工作階段的營收金額。
+    columns:
+      - name: session_id
+        description: "GA4 工作階段的唯一識別碼（粒度鍵）"
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: "使用者匿名 ID，對應 dim_customers.customer_id"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_customers')
+                field: customer_id
+
+      - name: traffic_sk
+        description: "流量來源代理鍵，對應 dim_traffic.traffic_sk"
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_traffic')
+                field: traffic_sk
+
+      - name: device_category
+        description: "裝置類型 (mobile / desktop / tablet)"
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['mobile', 'desktop', 'tablet']
+
+      - name: is_session_start
+        description: "是否觸發 session_start 事件 (1=是, 0=否)"
+        tests:
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+
+      - name: is_view_item
+        description: "是否觸發 view_item 事件 (1=是, 0=否)"
+        tests:
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+
+      - name: is_add_to_cart
+        description: "是否觸發 add_to_cart 事件 (1=是, 0=否)"
+        tests:
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+
+      - name: is_begin_checkout
+        description: "是否觸發 begin_checkout 事件 (1=是, 0=否)"
+        tests:
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+
+      - name: is_purchase
+        description: "是否觸發 purchase 事件 (1=是, 0=否)"
+        tests:
+          - accepted_values:
+              arguments:
+                values: [0, 1]
+
+      - name: session_revenue
+        description: "該工作階段的總購買金額 (若無購買則為 0)"
+        tests:
+          - not_null
+
+  # ============================================================
+  # dim_customers — 顧客維度表
+  # ============================================================
+  - name: dim_customers
+    description: >
+      以顧客為粒度的維度表。
+      彙總每位顧客的終生價值 (Lifetime Value) 與總訂單數，
+      用於識別高價值顧客區段。
+    columns:
+      - name: customer_id
+        description: "使用者匿名 ID（主鍵）"
+        tests:
+          - unique
+          - not_null
+
+      - name: main_country
+        description: "顧客最常出現的國家"
+
+      - name: lifetime_value
+        description: "顧客終生消費總額"
+        tests:
+          - not_null
+
+      - name: total_orders
+        description: "顧客總購買次數"
+        tests:
+          - not_null
+
+  # ============================================================
+  # dim_traffic — 流量來源維度表
+  # ============================================================
+  - name: dim_traffic
+    description: >
+      流量來源維度表。
+      每一列代表一個不重複的 (traffic_source, traffic_medium) 組合，
+      用於分析不同流量管道的轉換率表現。
+    columns:
+      - name: traffic_sk
+        description: "代理鍵（主鍵），由 traffic_source + traffic_medium 雜湊產生"
+        tests:
+          - unique
+          - not_null
+
+      - name: traffic_source
+        description: "流量來源 (例如 google, facebook, Unknown)"
+        tests:
+          - not_null
+
+      - name: traffic_medium
+        description: "流量媒介 (例如 organic, cpc, referral, Unknown)"
+        tests:
+          - not_null

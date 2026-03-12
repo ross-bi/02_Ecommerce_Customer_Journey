@@ -31,7 +31,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   ga4_dbt:
-    # Config indicated by + and applies to all files under models/example/
+    # All marts models default to table (override per-model with config() in SQL)
     marts:
-      +dim_customers: table
-      +dim_traffic: table
+      +materialized: table

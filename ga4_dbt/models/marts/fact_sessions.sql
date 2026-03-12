@@ -7,8 +7,10 @@
 
 SELECT 
     session_id,
-    user_pseudo_id AS customer_id,
-    {{ dbt_utils.generate_surrogate_key(['traffic_source', 'traffic_medium']) }} AS traffic_sk,
+    -- 一個 session 只屬於一位使用者，用 MIN 取值（實際上同 session 內只有一個值）
+    MIN(user_pseudo_id) AS customer_id,
+    -- 一個 session 只有一個流量入口，用 MIN 確保只取一個 traffic_sk
+    MIN({{ dbt_utils.generate_surrogate_key(['traffic_source', 'traffic_medium']) }}) AS traffic_sk,
     MAX(device_category) AS device_category,
     
     -- 判斷這個工作階段是否有觸發各漏斗階段
@@ -23,10 +25,8 @@ SELECT
 
 FROM {{ ref('stg_ga4_events') }}
 
-
 {% if is_incremental() %}
-  -- 只有當這是後續更新時，才只抓取比現有資料庫中最新的日期還要新的資料
   WHERE event_time > (SELECT max(event_time) FROM {{ this }})
 {% endif %}
 
-GROUP BY 1, 2, 3
+GROUP BY session_id
