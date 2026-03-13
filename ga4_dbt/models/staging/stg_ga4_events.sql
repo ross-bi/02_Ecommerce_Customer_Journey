@@ -22,8 +22,12 @@ SELECT
     NULLIF(city, '(not set)') AS city,
     
     -- 清理流量來源的雜訊
-    CASE WHEN traffic_source IN ('(data deleted)', '(direct)', '<Other>') THEN 'Unknown' ELSE traffic_source END AS traffic_source,
-    CASE WHEN traffic_medium IN ('(data deleted)', '(none)') THEN 'Unknown' ELSE traffic_medium END AS traffic_medium,
+    CASE WHEN traffic_source = '(data deleted)' THEN 'Unknown'
+     WHEN traffic_source = '(direct)' THEN 'Direct'
+     WHEN traffic_source = '<Other>' THEN 'Unknown'
+     ELSE traffic_source END AS traffic_source,
+
+    CASE WHEN traffic_medium IN ('(data deleted)', '(none)','<Other>') THEN 'Unknown' ELSE traffic_medium END AS traffic_medium,
     
     -- 確保金額若是 null 就補 0
     COALESCE(purchase_revenue, 0) AS purchase_revenue,
