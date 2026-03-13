@@ -65,30 +65,31 @@
 ## 架构
 
 ```
-BigQuery（GA4 公开数据）
-        │
-        ▼  SQL 提取 → CSV 导出
+BigQuery (GA4 Public Data)
+        |
+        v  SQL export --> CSV
 PostgreSQL: raw.ga4_events
-        │
-        ▼  dbt staging 层
-stg_ga4_events              ← 清理与标准化事件（增量模型）
-        │                      · (not set) → NULL
-        │                      · (data deleted) / <Other> → Unknown
-        │                      · (direct) → Direct
-        │                      · NULL 金额 → 0
-        │
-        ▼  dbt marts 层（星型模式）
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│  fact_sessions   │    │  dim_customers   │    │   dim_traffic    │
-│  （增量模型）     │◄──►│  （数据表）       │    │   （数据表）      │
-│  会话漏斗        │    │  LTV + 订单数    │    │   来源/媒介      │
-│  标记 + 营收     │    │                  │    │   代理键         │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-        │
-        ▼  26 项 schema 测试（unique、not_null、accepted_values、relationships）
-        │
-        ▼
-   Power BI 仪表板（3 页）
+        |
+        v  dbt staging layer
+stg_ga4_events              <-- Cleaned & normalised (incremental)
+        |                       . (not set)      --> NULL
+        |                       . (data deleted)  --> Unknown
+        |                       . <Other>         --> Unknown
+        |                       . (direct)        --> Direct
+        |                       . NULL revenue    --> 0
+        |
+        v  dbt marts layer (star schema)
++-------------------+    +-------------------+    +-------------------+
+|  fact_sessions    |    |  dim_customers    |    |  dim_traffic      |
+|  (incremental)    |<-->|  (table)          |    |  (table)          |
+|  Session funnel   |    |  LTV + orders     |    |  Source / medium  |
+|  flags + revenue  |    |  per customer     |    |  surrogate key    |
++-------------------+    +-------------------+    +-------------------+
+        |
+        v  26 schema tests (unique, not_null, accepted_values, relationships)
+        |
+        v
+   Power BI Dashboard (3 pages)
 ```
 
 ---
