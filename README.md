@@ -66,28 +66,29 @@ The goal is to understand **how customers move through the purchase funnel**, id
 
 ```
 BigQuery (GA4 Public Data)
-        │
-        ▼  SQL extraction → CSV export
+        |
+        v  SQL export --> CSV
 PostgreSQL: raw.ga4_events
-        │
-        ▼  dbt staging layer
-stg_ga4_events              ← Cleaned & normalised events (incremental)
-        │                      · (not set) → NULL
-        │                      · (data deleted) / <Other> → Unknown
-        │                      · (direct) → Direct
-        │                      · NULL revenue → 0
-        │
-        ▼  dbt marts layer (star schema)
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│  fact_sessions   │    │  dim_customers   │    │   dim_traffic    │
-│  (incremental)   │◄──►│  (table)         │    │   (table)        │
-│  Session funnel  │    │  LTV + orders    │    │   Source/medium  │
-│  flags + revenue │    │  per customer    │    │   surrogate key  │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-        │
-        ▼  26 schema tests (unique, not_null, accepted_values, relationships)
-        │
-        ▼
+        |
+        v  dbt staging layer
+stg_ga4_events              <-- Cleaned & normalised (incremental)
+        |                       . (not set)      --> NULL
+        |                       . (data deleted)  --> Unknown
+        |                       . <Other>         --> Unknown
+        |                       . (direct)        --> Direct
+        |                       . NULL revenue    --> 0
+        |
+        v  dbt marts layer (star schema)
++-------------------+    +-------------------+    +-------------------+
+|  fact_sessions    |    |  dim_customers    |    |  dim_traffic      |
+|  (incremental)    |<-->|  (table)          |    |  (table)          |
+|  Session funnel   |    |  LTV + orders     |    |  Source / medium  |
+|  flags + revenue  |    |  per customer     |    |  surrogate key    |
++-------------------+    +-------------------+    +-------------------+
+        |
+        v  26 schema tests (unique, not_null, accepted_values, relationships)
+        |
+        v
    Power BI Dashboard (3 pages)
 ```
 
