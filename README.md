@@ -91,6 +91,37 @@ stg_ga4_events              <-- Cleaned & normalised (incremental)
         v
    Power BI Dashboard (3 pages)
 ```
+### dbt Model Lineage
+
+```mermaid
+erDiagram
+    fact_sessions {
+        string session_id PK
+        string customer_id FK
+        string traffic_sk FK
+        string device_category
+        int is_session_start
+        int is_view_item
+        int is_add_to_cart
+        int is_begin_checkout
+        int is_purchase
+        float session_revenue
+    }
+    dim_customers {
+        string customer_id PK
+        string main_country
+        float lifetime_value
+        int total_orders
+    }
+    dim_traffic {
+        string traffic_sk PK
+        string traffic_source
+        string traffic_medium
+    }
+
+    dim_customers ||--o{ fact_sessions : "purchases"
+    dim_traffic   ||--o{ fact_sessions : "referred by"
+```
 
 ---
 
@@ -141,6 +172,14 @@ The extracted CSV is loaded into `raw.ga4_events` in PostgreSQL using the script
 | Incremental filter | Only processes records newer than `max(event_time)` |
 
 ### Marts Layer (Star Schema)
+
+#### Schema Overview
+| Table | Type | Grain | Description |
+|---|---|---|---|
+| `fact_sessions` | Incremental | One row per session | Funnel flags + revenue |
+| `dim_customers` | Table | One row per user | LTV + total orders |
+| `dim_traffic` | Table | One row per source/medium combo | Traffic source dimension |
+
 
 #### `fact_sessions` — Purchase Funnel Fact Table
 

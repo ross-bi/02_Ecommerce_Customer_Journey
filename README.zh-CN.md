@@ -91,6 +91,37 @@ stg_ga4_events              <-- Cleaned & normalised (incremental)
         v
    Power BI Dashboard (3 pages)
 ```
+### dbt 模型谱系
+
+```mermaid
+erDiagram
+    fact_sessions {
+        string session_id PK
+        string customer_id FK
+        string traffic_sk FK
+        string device_category
+        int is_session_start
+        int is_view_item
+        int is_add_to_cart
+        int is_begin_checkout
+        int is_purchase
+        float session_revenue
+    }
+    dim_customers {
+        string customer_id PK
+        string main_country
+        float lifetime_value
+        int total_orders
+    }
+    dim_traffic {
+        string traffic_sk PK
+        string traffic_source
+        string traffic_medium
+    }
+
+    dim_customers ||--o{ fact_sessions : "purchases"
+    dim_traffic   ||--o{ fact_sessions : "referred by"
+```
 
 ---
 
@@ -141,6 +172,13 @@ WHERE _TABLE_SUFFIX BETWEEN '20201101' AND '20201130'
 | 增量筛选 | 仅处理比 `max(event_time)` 更新的记录 |
 
 ### Marts 层（星型模式）
+
+#### 纲要总览
+| 资料表 | 类型 | 粒度 | 说明 |
+|---|---|---|---|
+| `fact_sessions` | Incremental | 每个 Session 一笔记录 | 漏斗旗标 + 营收 |
+| `dim_customers` | Table | 每位用户一笔记录 | 客户终身价值 + 订单数 |
+| `dim_traffic` | Table | 每组来源／媒介一笔记录 | 流量来源维度 |
 
 #### `fact_sessions` — 购物漏斗事实表
 
