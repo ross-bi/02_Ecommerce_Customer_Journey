@@ -30,7 +30,7 @@
 
 | 第 1 页 — 总览 | 第 2 页 — 转换与流量 | 第 3 页 — 顾客分群 |
 |:---:|:---:|:---:|
-| ![总览](photo/bi01.png) | ![转换与流量](photo/bi02.png) | ![顾客分群](photo/bi03.png) |
+| ![总览](screenshot/bi01.png) | ![转换与流量](screenshot/bi02.png) | ![顾客分群](screenshot/bi03.png) |
 
 **第 1 页** — KPI 卡片、购物漏斗图、设备分布、各国收入  
 **第 2 页** — 各流量媒介/来源的转换率、设备层级指标、流量 × 设备交叉分析  
@@ -274,7 +274,7 @@ LIMIT 20;
 │   ├── Journey.pbix                        # Power BI 仪表板文件
 │   └── Journey.pdf                         # 仪表板导出（预览用）
 │
-├── photo/
+├── screenshot/
 │   ├── bi01.png                            # 第 1 页 — 总览
 │   ├── bi02.png                            # 第 2 页 — 转换与流量
 │   ├── bi03.png                            # 第 3 页 — 顾客分群

@@ -30,7 +30,7 @@ The goal is to understand **how customers move through the purchase funnel**, id
 
 | Page 1 — Executive Overview | Page 2 — Conversion & Traffic | Page 3 — Customer Segments |
 |:---:|:---:|:---:|
-| ![Executive Overview](photo/bi01.png) | ![Conversion & Traffic](photo/bi02.png) | ![Customer Segments](photo/bi03.png) |
+| ![Executive Overview](screenshot/bi01.png) | ![Conversion & Traffic](screenshot/bi02.png) | ![Customer Segments](screenshot/bi03.png) |
 
 **Page 1** — KPI cards, purchase funnel chart, device breakdown, and revenue by country  
 **Page 2** — Conversion rate by traffic medium/source, device-level metrics, and traffic × device matrix  
@@ -274,7 +274,7 @@ LIMIT 20;
 │   ├── Journey.pbix                        # Power BI dashboard file
 │   └── Journey.pdf                         # Dashboard export (for preview)
 │
-├── photo/
+├── screenshot/
 │   ├── bi01.png                            # Page 1 — Executive Overview
 │   ├── bi02.png                            # Page 2 — Conversion & Traffic
 │   ├── bi03.png                            # Page 3 — Customer Segments
