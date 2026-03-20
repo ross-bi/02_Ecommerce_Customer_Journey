@@ -373,6 +373,10 @@ dbt test                     # Run 26 data quality tests
 
 ---
 
+## Author
+
+ross-bi | [GitHub](https://github.com/ross-bi)
+
 ## License
 
 This project is licensed under the [MIT License](./LICENSE).

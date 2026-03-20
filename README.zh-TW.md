@@ -372,6 +372,10 @@ dbt test                     # 執行 26 項資料品質測試
 
 ---
 
+## 作者
+
+ross-bi | [GitHub](https://github.com/ross-bi)
+
 ## 授權條款
 
 本專案採用 [MIT License](./LICENSE) 授權。
