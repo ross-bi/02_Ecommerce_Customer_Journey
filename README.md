@@ -28,13 +28,19 @@ The goal is to understand **how customers move through the purchase funnel**, id
 
 ## Dashboard Preview
 
-| Page 1 — Executive Overview | Page 2 — Conversion & Traffic | Page 3 — Customer Segments |
-|:---:|:---:|:---:|
-| ![Executive Overview](screenshot/bi01.png) | ![Conversion & Traffic](screenshot/bi02.png) | ![Customer Segments](screenshot/bi03.png) |
+### Page 1 — Executive Overview
+- KPI cards, purchase funnel chart, device breakdown, and revenue by country 
+<img src="screenshot/bi01.png" alt="Executive Overview" width="100%">
 
-**Page 1** — KPI cards, purchase funnel chart, device breakdown, and revenue by country  
-**Page 2** — Conversion rate by traffic medium/source, device-level metrics, and traffic × device matrix  
-**Page 3** — Customer lifetime value distribution, LTV vs orders scatter plot, and top customers table
+### Page 2 — Conversion & Traffic
+- Conversion rate by traffic medium/source, device-level metrics, and traffic × device matrix 
+<img src="screenshot/bi02.png" alt="Conversion & Traffic" width="100%">
+
+### Page 3 — Customer Segments
+- Customer lifetime value distribution, LTV vs orders scatter plot, and top customers table
+<img src="screenshot/bi03.png" alt="Customer Segments" width="100%">
+
+
 
 ---
 
