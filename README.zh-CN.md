@@ -26,25 +26,6 @@
 
 ---
 
-## 仪表板预览
-
-
-### 第 1 页 — 总览
-- KPI 卡片、购物漏斗图、装置分布、各国收入
-<img src="screenshot/bi01.png" alt="总览" width="100%">
-
-### 第 2 页 — 转换与流量
-- 各流量媒介/来源的转换率、装置层级指针、流量 × 装置交叉分析
-<img src="screenshot/bi02.png" alt="转换与流量" width="100%">
-
-### 第 3 页 — 顾客分群
-- 顾客终身价值分布、LTV vs 订单数散布图、高价值顾客排行
-<img src="screenshot/bi03.png" alt="顾客分群" width="100%">
-
-
-
----
-
 ## 数据集
 
 | 项目 | 说明 |
@@ -283,6 +264,22 @@ WHERE total_orders >= 2
 ORDER BY lifetime_value DESC
 LIMIT 20;
 ```
+---
+
+## 仪表板预览
+
+
+### 第 1 页 — 总览
+- KPI 卡片、购物漏斗图、装置分布、各国收入
+<img src="screenshot/bi01.png" alt="总览" width="100%">
+
+### 第 2 页 — 转换与流量
+- 各流量媒介/来源的转换率、装置层级指针、流量 × 装置交叉分析
+<img src="screenshot/bi02.png" alt="转换与流量" width="100%">
+
+### 第 3 页 — 顾客分群
+- 顾客终身价值分布、LTV vs 订单数散布图、高价值顾客排行
+<img src="screenshot/bi03.png" alt="顾客分群" width="100%">
 
 ---
 

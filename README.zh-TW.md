@@ -26,24 +26,6 @@
 
 ---
 
-## 儀表板預覽
-
-
-### 第 1 頁 — 總覽
-- KPI 卡片、購物漏斗圖、裝置分佈、各國收入
-<img src="screenshot/bi01.png" alt="總覽" width="100%">
-
-### 第 2 頁 — 轉換與流量
-- 各流量媒介/來源的轉換率、裝置層級指標、流量 × 裝置交叉分析
-<img src="screenshot/bi02.png" alt="轉換與流量" width="100%">
-
-### 第 3 頁 — 顧客分群
-- 顧客終身價值分佈、LTV vs 訂單數散佈圖、高價值顧客排行
-<img src="screenshot/bi03.png" alt="顧客分群" width="100%">
-
-
----
-
 ## 資料集
 
 | 項目 | 說明 |
@@ -282,6 +264,24 @@ WHERE total_orders >= 2
 ORDER BY lifetime_value DESC
 LIMIT 20;
 ```
+
+---
+## 儀表板預覽
+
+
+### 第 1 頁 — 總覽
+- KPI 卡片、購物漏斗圖、裝置分佈、各國收入
+<img src="screenshot/bi01.png" alt="總覽" width="100%">
+
+### 第 2 頁 — 轉換與流量
+- 各流量媒介/來源的轉換率、裝置層級指標、流量 × 裝置交叉分析
+<img src="screenshot/bi02.png" alt="轉換與流量" width="100%">
+
+### 第 3 頁 — 顧客分群
+- 顧客終身價值分佈、LTV vs 訂單數散佈圖、高價值顧客排行
+<img src="screenshot/bi03.png" alt="顧客分群" width="100%">
+
+
 
 ---
 

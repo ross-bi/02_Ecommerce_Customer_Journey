@@ -24,23 +24,6 @@ The goal is to understand **how customers move through the purchase funnel**, id
 - Creating a **3-page Power BI dashboard** for funnel analysis, traffic performance, and customer segmentation
 - Documenting data anomalies and design decisions in a problem-solving notebook
 
----
-
-## Dashboard Preview
-
-### Page 1 — Executive Overview
-- KPI cards, purchase funnel chart, device breakdown, and revenue by country 
-<img src="screenshot/bi01.png" alt="Executive Overview" width="100%">
-
-### Page 2 — Conversion & Traffic
-- Conversion rate by traffic medium/source, device-level metrics, and traffic × device matrix 
-<img src="screenshot/bi02.png" alt="Conversion & Traffic" width="100%">
-
-### Page 3 — Customer Segments
-- Customer lifetime value distribution, LTV vs orders scatter plot, and top customers table
-<img src="screenshot/bi03.png" alt="Customer Segments" width="100%">
-
-
 
 ---
 
@@ -283,6 +266,21 @@ WHERE total_orders >= 2
 ORDER BY lifetime_value DESC
 LIMIT 20;
 ```
+---
+
+## Dashboard Preview
+
+### Page 1 — Executive Overview
+- KPI cards, purchase funnel chart, device breakdown, and revenue by country 
+<img src="screenshot/bi01.png" alt="Executive Overview" width="100%">
+
+### Page 2 — Conversion & Traffic
+- Conversion rate by traffic medium/source, device-level metrics, and traffic × device matrix 
+<img src="screenshot/bi02.png" alt="Conversion & Traffic" width="100%">
+
+### Page 3 — Customer Segments
+- Customer lifetime value distribution, LTV vs orders scatter plot, and top customers table
+<img src="screenshot/bi03.png" alt="Customer Segments" width="100%">
 
 ---
 
