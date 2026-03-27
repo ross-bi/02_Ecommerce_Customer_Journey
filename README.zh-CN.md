@@ -374,7 +374,7 @@ dbt test                     # 执行 26 项数据质量测试
 
 ## 作者
 
-ross-bi | [GitHub](https://github.com/ross-bi)
+Ross Tang | [GitHub](https://github.com/ross-bi)
 
 ## 许可证
 
