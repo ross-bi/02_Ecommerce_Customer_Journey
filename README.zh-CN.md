@@ -1,6 +1,6 @@
 [![English](https://img.shields.io/badge/English-Click_to_view-blue?style=for-the-badge)](README.md)
 &nbsp;&nbsp;
-[![简体中文](https://img.shields.io/badge/简体中文-点击查看-blue?style=for-the-badge)](README.zh-CN.md)
+[![繁體中文](https://img.shields.io/badge/繁體中文-點擊查看-blue?style=for-the-badge)](README.zh-TW.md)
 
 # 电商客户旅程分析
 
