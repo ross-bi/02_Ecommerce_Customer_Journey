@@ -272,19 +272,23 @@ LIMIT 20;
 
 ### Page 1 — Executive Overview
 <img src="screenshot/bi01.png" alt="Executive Overview" width="100%">
-- **KPI Cards**: Total revenue (~$144K), total sessions (104K), overall CVR (1.3%), average order value (~$89)  
-- **Purchase Funnel**: Visual drop-off from session start → view → cart → checkout → purchase; highlights that only 19% of sessions reach product view  
-- **Device Breakdown**: Conversion share by Desktop / Mobile / Tablet, with desktop generally leading in revenue contribution  
+
+- **KPI Cards**: Total revenue (~$144K), total sessions (104K), overall CVR (1.3%), average order value (~$89)
+- **Purchase Funnel**: Visual drop-off from session start → view → cart → checkout → purchase; highlights that only 19% of sessions reach product view
+- **Device Breakdown**: Conversion share by Desktop / Mobile /
+Tablet, with desktop generally leading in revenue contribution
 - **Revenue by Country**: US dominates at ~$64K; Canada, India, and UK follow as core markets
 
 ### Page 2 — Conversion & Traffic
 <img src="screenshot/bi02.png" alt="Conversion & Traffic" width="100%">
+
 - **CVR by Traffic Source & Medium**: Referral traffic (shop.googlemerchandisestore.com) achieves the highest CVR at 2.2–2.3%, outperforming organic (~1.1–1.5%) and paid search (~1.2%)
 - **Traffic × Device Matrix**: Cross-tab of source/medium against device, surfacing which combinations drive both volume and efficiency
 - **Device-Level Metrics**: Mobile organic Google is a notable strong performer — competitive CVR with high session volume
 
 ### Page 3 — Customer Segments
 <img src="screenshot/bi03.png" alt="Customer Segments" width="100%">
+
 - **LTV Distribution**: Customers segmented into VIP / High / Mid / Low bands; most revenue is concentrated in a small top tier
 - **LTV vs Total Orders Scatter**: Reveals repeat purchasers with high lifetime value — predominantly acquired through organic and referral channels
 - **Top Customers Table**: Ranked by lifetime revenue and order count, enabling targeted retention strategy
