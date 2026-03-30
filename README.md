@@ -273,7 +273,7 @@ LIMIT 20;
 ### Page 1 — Executive Overview
 <img src="screenshot/bi01.png" alt="Executive Overview" width="100%">
 
-- **KPI Cards**: Total revenue (~$144K), total sessions (104K), overall CVR (1.3%), average order value (~$89)
+- **KPI Cards**: Total revenue (~ $144K), total sessions (104K), overall CVR (1.3%), average order value (~ $89)
 - **Purchase Funnel**: Visual drop-off from session start → view → cart → checkout → purchase; highlights that only 19% of sessions reach product view
 - **Device Breakdown**: Conversion share by Desktop / Mobile /
 Tablet, with desktop generally leading in revenue contribution
