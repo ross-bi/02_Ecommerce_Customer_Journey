@@ -271,16 +271,82 @@ LIMIT 20;
 ## Dashboard Preview
 
 ### Page 1 — Executive Overview
-- KPI cards, purchase funnel chart, device breakdown, and revenue by country 
 <img src="screenshot/bi01.png" alt="Executive Overview" width="100%">
+- **KPI Cards**: Total revenue (~$144K), total sessions (104K), overall CVR (1.3%), average order value (~$89)  
+- **Purchase Funnel**: Visual drop-off from session start → view → cart → checkout → purchase; highlights that only 19% of sessions reach product view  
+- **Device Breakdown**: Conversion share by Desktop / Mobile / Tablet, with desktop generally leading in revenue contribution  
+- **Revenue by Country**: US dominates at ~$64K; Canada, India, and UK follow as core markets
 
 ### Page 2 — Conversion & Traffic
-- Conversion rate by traffic medium/source, device-level metrics, and traffic × device matrix 
 <img src="screenshot/bi02.png" alt="Conversion & Traffic" width="100%">
+- **CVR by Traffic Source & Medium**: Referral traffic (shop.googlemerchandisestore.com) achieves the highest CVR at 2.2–2.3%, outperforming organic (~1.1–1.5%) and paid search (~1.2%)
+- **Traffic × Device Matrix**: Cross-tab of source/medium against device, surfacing which combinations drive both volume and efficiency
+- **Device-Level Metrics**: Mobile organic Google is a notable strong performer — competitive CVR with high session volume
 
 ### Page 3 — Customer Segments
-- Customer lifetime value distribution, LTV vs orders scatter plot, and top customers table
 <img src="screenshot/bi03.png" alt="Customer Segments" width="100%">
+- **LTV Distribution**: Customers segmented into VIP / High / Mid / Low bands; most revenue is concentrated in a small top tier
+- **LTV vs Total Orders Scatter**: Reveals repeat purchasers with high lifetime value — predominantly acquired through organic and referral channels
+- **Top Customers Table**: Ranked by lifetime revenue and order count, enabling targeted retention strategy
+
+## Key Findings
+
+### Funnel Performance
+
+| Stage | Sessions | Rate |
+|---|---|---|
+| Session Start | 104,202 | — |
+| View Item | 19,774 | 19.0% |
+| Add to Cart | 2,178 | 2.1% |
+| Begin Checkout | 4,575 | 4.4% |
+| Purchase | 1,311 | 1.3% |
+
+Only 1 in 5 sessions reaches a product view, and fewer than 1.6% complete a purchase — indicating significant drop-off at both the discovery and checkout stages. The `begin_checkout` count exceeding `add_to_cart` is a known GA4 implementation characteristic (see `problem_solve.ipynb`).
+
+### Traffic & Conversion
+
+| Traffic Source | Device | Sessions | CVR | Revenue |
+|---|---|---|---|---|
+| google / organic | Desktop | 18,182 | 1.12% | $16,431 |
+| Direct | Desktop | 13,921 | 1.41% | $17,597 |
+| google / organic | Mobile | 12,804 | 1.45% | $19,649 |
+| Referral (merch store) | Desktop | 5,130 | **2.22%** | $10,599 |
+| Referral (merch store) | Mobile | 3,684 | **2.31%** | $6,986 |
+| google / cpc | Various | — | ~1.2–1.3% | Low |
+
+Referral traffic from `shop.googlemerchandisestore.com` consistently delivers the highest CVR across devices, while paid search (CPC) underperforms relative to organic and referral in both conversion and revenue.
+
+### Geographic Insights
+
+| Market | Sessions | Revenue | Avg LTV | Note |
+|---|---|---|---|---|
+| United States | 45,784 | $64,443 | $4.20 | Core market, highest volume |
+| India | ~9,862 | $14,304 | $4.1+ | Strong CVR ~1.76% |
+| Canada | ~7,691 | $12,591 | $4.1+ | High-efficiency mid-market |
+| Finland | 165 | $561 | **$22.70** | Very high LTV, niche premium |
+| Bahrain | Small | ~$206 | **$25.75** | Highest avg LTV |
+| Norway | 173 | $0 | — | Sessions but zero purchases |
+
+Revenue is concentrated in a handful of large markets, but several small markets (Finland, Bahrain, Greece) show very high average LTV and order values — indicating potential for targeted expansion.
+
+### Customer Value
+
+High-LTV customers (multiple orders, elevated lifetime spend) are disproportionately acquired through organic search and referral traffic. The `dim_customers` mart supports segmenting customers into LTV bands (VIP / High / Mid / Low) and cross-filtering against traffic source, device, and geography to inform retention strategy.
+
+---
+
+## Business Recommendations
+
+1. **Improve funnel UX at product discovery and checkout** — With only 19% of sessions viewing a product and 1.3% converting, improving on-site search, product listing relevance, and checkout simplicity could have an outsized impact on revenue.
+
+2. **Shift budget toward organic and referral channels** — Referral (CVR 2.2–2.3%) and organic Google traffic consistently outperform paid search. Invest in SEO, content, and partnerships that drive high-intent referrals while critically reviewing paid search ROI.
+
+3. **Target high-LTV markets with localisation** — Markets like Finland, Bahrain, and Greece show very high average order values despite modest traffic. Targeted campaigns, local currency, and tailored shipping options could unlock disproportionate returns.
+
+4. **Investigate zero-conversion markets** — Norway and similar markets show meaningful session volume with no recorded purchases. Audit for payment method gaps, shipping restrictions, or localisation barriers before investing in traffic growth there.
+
+5. **Institutionalise LTV-based segmentation and cohort tracking** — Use the existing `dim_customers` mart and Power BI LTV segments to monitor how different acquisition channels contribute to long-term customer value, and to guide retention programme investments.
+
 
 ---
 
