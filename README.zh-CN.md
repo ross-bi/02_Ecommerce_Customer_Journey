@@ -359,9 +359,9 @@ LIMIT 20;
 │ └── raw_ga4_events.csv # 提取的 GA4 事件（2020 年 11 月）
 │
 ├── scripts/
-│ ├── create_table.sql # PostgreSQL 原始结构建立
-│ ├── copy_raw.sql # 将 CSV 载入 raw.ga4_events
-│ └── data_quality_check.py # Python 数据质量验证（7 项检查）
+│ ├── create_table.sql # [SQL] PostgreSQL 原始结构建立
+│ ├── copy_raw.sql # [SQL] 将 CSV 载入 raw.ga4_events
+│ └── data_quality_check.py # [Python] Python 数据质量验证（7 项检查）
 │
 ├── ga4_dbt/ # dbt 项目根目录
 │ ├── dbt_project.yml # 项目设定（marts = table）

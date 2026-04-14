@@ -364,9 +364,9 @@ High-LTV customers (multiple orders, elevated lifetime spend) are disproportiona
 │   └── raw_ga4_events.csv                  # Extracted GA4 events (Nov 2020)
 │
 ├── scripts/
-│   ├── create_table.sql                    # PostgreSQL raw schema creation
-│   ├── copy_raw.sql                        # Load CSV into raw.ga4_events
-│   └── data_quality_check.py               # Python data quality validation (7 checks)
+│   ├── create_table.sql                    # [SQL] PostgreSQL raw schema creation
+│   ├── copy_raw.sql                        # [SQL] Load CSV into raw.ga4_events
+│   └── data_quality_check.py               # [Python] Python data quality validation (7 checks)
 │
 ├── ga4_dbt/                                # dbt project root
 │   ├── dbt_project.yml                     # Project config (marts = table)
