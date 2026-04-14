@@ -47,6 +47,7 @@ The goal is to understand **how customers move through the purchase funnel**, id
 | PostgreSQL | Data warehouse — stores raw and transformed tables |
 | dbt | Data transformation pipeline (staging + marts layers) with schema tests |
 | Power BI | 3-page interactive dashboard (funnel, traffic, customer segments) |
+| Python | Data quality validation script (`scripts/data_quality_check.py`) |
 | GitHub | Version control and documentation |
 
 ---
@@ -364,7 +365,8 @@ High-LTV customers (multiple orders, elevated lifetime spend) are disproportiona
 │
 ├── scripts/
 │   ├── create_table.sql                    # PostgreSQL raw schema creation
-│   └── copy_raw.sql                        # Load CSV into raw.ga4_events
+│   ├── copy_raw.sql                        # Load CSV into raw.ga4_events
+│   └── data_quality_check.py               # Python data quality validation (7 checks)
 │
 ├── ga4_dbt/                                # dbt project root
 │   ├── dbt_project.yml                     # Project config (marts = table)
@@ -417,6 +419,20 @@ psql -U postgres -f scripts/create_table.sql
 # Edit scripts/copy_raw.sql to set your local CSV path, then:
 psql -U postgres -f scripts/copy_raw.sql
 ```
+
+### Step 2.5 — Run Data Quality Check (Optional)
+
+```bash
+pip install pandas               # If not already installed
+export DB_HOST=localhost
+export DB_NAME=ecommerce
+export DB_USER=postgres
+export DB_PASSWORD=your_password
+
+python scripts/data_quality_check.py
+```
+
+Runs 7 validation checks across all mart tables (row counts, null rates, PK uniqueness, referential integrity, funnel logic, revenue sanity, event coverage) and exports `data_quality_report.csv`.
 
 ### Step 3 — Run dbt
 

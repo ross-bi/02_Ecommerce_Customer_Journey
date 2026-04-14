@@ -46,6 +46,7 @@
 | PostgreSQL | 数据仓储——储存原始及转换后的数据表 |
 | dbt | 数据转换管道（staging + marts 层），含结构测试 |
 | Power BI | 3 页交互式仪表板（漏斗、流量、客户分群） |
+| Python | 数据质量验证脚本（`scripts/data_quality_check.py`） |
 | GitHub | 版本控制与文件 |
 
 ---
@@ -359,7 +360,8 @@ LIMIT 20;
 │
 ├── scripts/
 │ ├── create_table.sql # PostgreSQL 原始结构建立
-│ └── copy_raw.sql # 将 CSV 载入 raw.ga4_events
+│ ├── copy_raw.sql # 将 CSV 载入 raw.ga4_events
+│ └── data_quality_check.py # Python 数据质量验证（7 项检查）
 │
 ├── ga4_dbt/ # dbt 项目根目录
 │ ├── dbt_project.yml # 项目设定（marts = table）
@@ -412,6 +414,19 @@ psql -U postgres -f scripts/create_table.sql
 # 编辑 scripts/copy_raw.sql 设定本地 CSV 路径，然后：
 psql -U postgres -f scripts/copy_raw.sql
 ```
+### 步骤 2.5 — 执行数据质量验证（可选）
+
+```bash
+pip install pandas               # 若尚未安装
+export DB_HOST=localhost
+export DB_NAME=ecommerce
+export DB_USER=postgres
+export DB_PASSWORD=your_password
+
+python scripts/data_quality_check.py
+```
+
+对所有 mart 数据表执行 7 项验证（行数、NULL 比例、主键唯一性、参照完整性、漏斗逻辑、收入合理性、事件覆盖率），并输出 `data_quality_report.csv`。
 
 ### 步骤三 — 执行 dbt
 
