@@ -465,7 +465,7 @@ dbt test                     # Run 26 data quality tests
 
 ## Author
 
-Ross Tang | [GitHub](https://github.com/ross-bi)
+Chung Man Tang | [GitHub](https://github.com/ross-bi)
 
 ## License
 

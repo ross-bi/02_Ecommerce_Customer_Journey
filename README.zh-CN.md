@@ -459,7 +459,7 @@ dbt test                     # 执行 26 项数据质量测试
 
 ## 作者
 
-Ross Tang | [GitHub](https://github.com/ross-bi)
+Chung Man Tang | [GitHub](https://github.com/ross-bi)
 
 ## 授权条款
 
